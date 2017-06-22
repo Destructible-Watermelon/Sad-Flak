@@ -92,10 +92,9 @@ class SadflakInterpreter:
 
         return command_list
 
-    def run(self):
+    def run(self, inputted):
         self.command_pointer = 0
         self.halted = False
-        inputted = input()
         if inputted:
             if inputted[0] == '"':
                 inputted = list(inputted)
@@ -108,8 +107,8 @@ class SadflakInterpreter:
                         elif inputted[i+1] == "\\":
                             del inputted[i+1]
                     i+=1
-                for i in inputted[::-1]:
-                    self.stacks.push(0, i)
+                for i in inputted[:0:-1]:
+                    self.stacks.push(0, ord(i))
 
             else:
                 inputted = [int(i) for i in inputted.split()]
@@ -122,9 +121,9 @@ class SadflakInterpreter:
                 temp_pointer %= len(self.program)
             self.execute_command(self.program[temp_pointer])
         if self.ascii_output:
-            print(''.join(chr(i) for i in self.stacks.stacks[0]))
+            print(''.join(chr(i) for i in self.stacks.stacks[0][::-1]))
         else:
-            print('\n'.join(str(i) for i in self.stacks.stacks[0]))
+            print('\n'.join(str(i) for i in self.stacks.stacks[0][::-1]))
 
     def execute_command(self, program_list):
         if len(program_list) > 1:
@@ -160,5 +159,5 @@ class SadflakInterpreter:
 
 
 
-
-SadflakInterpreter(input()).run()
+if __name__ == "__main__":
+    SadflakInterpreter(input()).run(input())
