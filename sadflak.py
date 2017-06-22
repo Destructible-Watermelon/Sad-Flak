@@ -119,6 +119,7 @@ class SadflakInterpreter:
             temp_pointer = self.command_pointer
             while self.program[temp_pointer] is None:
                 temp_pointer += 1
+                temp_pointer %= len(self.program)
             self.execute_command(self.program[temp_pointer])
         if self.ascii_output:
             print(''.join(chr(i) for i in self.stacks.stacks[0]))
@@ -145,7 +146,7 @@ class SadflakInterpreter:
                 return command_arg
         else:
             if program_list[0] == 1:  # []
-                return bool(self.stacks.pop(0))
+                return int(bool(self.stacks.pop(0)))
             elif program_list[0] == 2:  # {}
                 return self.stacks.pop(0)
             elif program_list[0] == 3:  # <>
