@@ -78,7 +78,7 @@ class SadflakInterpreter:
                 else:
                     i += 1
             if [4] in command_list:
-                command_list = command_list[:command_list.index([4])+1]  # this is broken right now
+                command_list = command_list[:command_list.index([4])+1]
             i = 2
             while i < len(command_list):
                 if command_list[i][~0] == [4]:
