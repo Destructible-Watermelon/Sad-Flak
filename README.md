@@ -3,22 +3,22 @@ For the Sad-Flak programming language, an unholy fusion of Woefully, and Brain-F
 
 
 # Docs
-so, like brain-flak, you have some nilads and monads. However, control flow does not come from {...} loops, instead the control flow comes from woefully, which cannot be explained in one sentence
+so, like brain-flak, you have some nilads and monads. However, control flow does not come from `{...}` loops, instead the control flow comes from woefully, which cannot be explained in one sentence
 
 Nilads evaluate to a value, possibly doing a side effect. Monads evaluate all nilads and monads inside of them, and use the some of their values as the argument, then evaluate as a value
 
 Nilads and monads:
 
-() = evaluates to 1
-<> = pop a, push to b (evaluates to popped value)
-[] = bool pop a. if the popped value was 0, return 0, otherwise 1.
-{} = pop a, evaluate to popped value
-≤≥ = halt. immediately halts program execution
-(...) = push argument to stack a
-<...> = still evaluate all inside but evaluate to 0
-[...] = evaluates to its argument, multiplied by -1
-{...} = pop from b, evaluate to popped value multiplied by argument
-≤...≥ = jump by argument
+* `()` = evaluates to 1
+* `<>` = pop a, push to b (evaluates to popped value)
+* `[]` = bool pop a. if the popped value was 0, return 0, otherwise 1.
+* `{}` = pop a, evaluate to popped value
+* `≤≥` = halt. immediately halts program execution
+* `(...)` = push argument to stack a
+* `<...>` = still evaluate all inside but evaluate to 0
+* `[...]` = evaluates to its argument, multiplied by -1
+* `{...}` = pop from b, evaluate to popped value multiplied by argument
+* `≤...≥` = jump by argument
 
 What is jump, you may ask?
 
@@ -102,7 +102,7 @@ so, hopefully you can see how control flow works. Wait, what did you say? "Where
 
 ...
 
-unless you count `[]``, the bool pop command. this command is at the heart of turing completeness, along with it's buddies:
+unless you count `[]`, the bool pop command. this command is at the heart of turing completeness, along with it's buddies:
 
 - `{...}` multiplication, used with the bool pop command, you can multiply jump values by things depending on whether a TOS was 0 stack. it also transfers value from the off stack to the on stack
 
