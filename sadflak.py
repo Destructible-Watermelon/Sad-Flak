@@ -12,8 +12,8 @@ class TwinStacks:
 class SadflakInterpreter:
     close_paren = {"{":"}", "[":"]", "(":")", "<":">", "≤":"≥"}
     command_index = {"(":0, "[":1, "{":2, "<":3, "≤":4}
-    def __init__(self, program):
-        self.program = [i.replace("\n","") for i in open(program).readlines()]
+    def __init__(self, arguments):
+        self.program = [i.replace("\n","") for i in open(arguments.program).readlines()]
         self.expand()
         for i in range(len(self.program)):
             if self.program[i]:
@@ -21,16 +21,7 @@ class SadflakInterpreter:
             else:
                 self.program[i] = None
         self.stacks = TwinStacks()
-
-        import argparse
-        parser = argparse.ArgumentParser(description="Interpret the Sadflak language")
-        parser.add_argument(
-        "-A", "--ascii_output", action="store_true",
-        help="ascii output"
-        )
-        argv = parser.parse_args()
-        self.ascii_output = argv.ascii_output
-
+        self.ascii_output = arguments.ascii_output
 
     def slim(self,line):
         return ''.join(i for i in line if i in "()[]{}<>≤≥")
@@ -157,7 +148,12 @@ class SadflakInterpreter:
                 return 0
 
 
-
-
 if __name__ == "__main__":
-    SadflakInterpreter(input()).run(input())
+    import argparse
+    parser = argparse.ArgumentParser(description="Interpret the Sadflak language")
+    parser.add_argument("program", metavar="program", type=str, help="path to the program")
+    parser.add_argument("-A", "--ascii_output", action="store_true", help="ascii output")
+
+    import os, sys
+    the_input = '' if os.isatty(0) else sys.stdin.read()
+    SadflakInterpreter(parser.parse_args()).run(the_input)
