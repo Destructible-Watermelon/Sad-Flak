@@ -114,7 +114,8 @@ and of course
 
 - `≤...≥` jumping
 
-of course, other commands are needed for TC ness. but these are outstanding ones in control flow.
+of course, other commands are needed for TC ness. but these are outstanding ones in control flow. Actually, now that i think about it, it is conceivable that the language could be Turing complete without the [] command, because i haven't proved it's necessary. however, it would most likely make the language unusuable if it were possible and the [] command removed.
+I think it would be cool if someone could prove whether or not removing the [] command would make it turing incomplete.
 
 
 
